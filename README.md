@@ -5,7 +5,15 @@ git clone git@github.com:wayneashleyberry/minify.git
 cd minify
 npm install .
 chmod +x minify.js
-./minify.js test/test.js
+```
+
+### Test
+
+```
+./minify.js --in test/test.js
+saved test/test.min.js
+./minify.js --in test/test.css -g
+saved test/81d0628.test.min.css
 ```
 
 ### UglifyJS 2
