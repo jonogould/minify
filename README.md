@@ -32,5 +32,6 @@ Options:
 	-i, --in [file]   file to compress
 	-o, --out [file]  file to write output to (optional)
 
-if no output file is specified the input name will be used
+If no output file is specified the input name will be used
+
 foo.css will become foo.min.css etc
