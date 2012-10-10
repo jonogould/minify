@@ -39,3 +39,4 @@ if (program.in.endsWith('.js')) {
 }
 
 minify(program.in, program.out);
+console.log('saved ' + program.out);
