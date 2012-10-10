@@ -25,13 +25,11 @@ npm install .
 
 Usage: minify.js [options]
 
-Options:
+  Options:
 
-	-h, --help        output usage information
-	-V, --version     output the version number
-	-i, --in [file]   file to compress
-	-o, --out [file]  file to write output to (optional)
-
-If no output file is specified the input name will be used
-
-foo.css will become foo.min.css etc
+    -h, --help              output usage information
+    -V, --version           output the version number
+    -i, --in [file]         File to compress.
+    -o, --out [file]        File to write minified output to (optional).
+    -p, --prepend [string]  Will prepend [string] to the output filename.
+    -a, --append [string]   Will append [string] to the output filename, in front of the file extension.
