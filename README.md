@@ -12,12 +12,12 @@ chmod +x minify.js
 ```
 ./minify.js --in test/test.js
 ======================
-saved test/test.min.js
+SAVED test/test.min.js
 ```
 ```
 ./minify.js --in test/test.css -g
 =================================
-saved test/81d0628.test.min.css
+SAVED test/81d0628.test.min.css
 ```
 
 ### UglifyJS 2
