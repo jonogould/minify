@@ -23,13 +23,13 @@ npm install .
 
 ### Usage
 
-Usage: minify.js [options]
+Usage Options:
 
-  Options:
-
-    -h, --help              output usage information
-    -V, --version           output the version number
-    -i, --in [file]         File to compress.
-    -o, --out [file]        File to write minified output to (optional).
-    -p, --prepend [string]  Will prepend [string] to the output filename.
-    -a, --append [string]   Will append [string] to the output filename, in front of the file extension.
+```
+-h, --help              output usage information
+-V, --version           output the version number
+-i, --in [file]         File to compress.
+-o, --out [file]        File to write minified output to (optional).
+-p, --prepend [string]  Will prepend [string] to the output filename.
+-a, --append [string]   Will append [string] to the output filename, in front of the file extension.
+```
