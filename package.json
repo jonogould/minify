@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-	  "type": "git",
-	  "url": "https://github.com/wayneashleyberry/minify"
+    "type": "git",
+    "url": "https://github.com/wayneashleyberry/minify"
   },
   "author": "Wayne Ashley Berry",
   "license": "BSD",
@@ -17,6 +17,7 @@
     "shelljs": "0.0.7",
     "underscore": "~1.4.2",
     "uglify-js2": "~2.0.0",
-    "requirejs": "~2.1.0"
+    "requirejs": "~2.1.0",
+    "cli-color": "~0.2.1"
   }
 }

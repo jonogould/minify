@@ -5,6 +5,7 @@ var program = require('commander');
 var shell = require('shelljs');
 var _ = require('underscore');
 var packageJSON = JSON.parse(fs.readFileSync(__dirname + '/package.json'));
+var clc = require('cli-color');
 
 String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
@@ -104,4 +105,7 @@ if (path) path += '/';
 var output = path + name + '.' + extension;
 
 minify(program.in, output);
-console.log('saved ' + output);
+
+var lines = 'SAVED ' + output;
+console.log(lines.replace(/./gi, '-'));
+console.log(clc.green('SAVED ') + output);
