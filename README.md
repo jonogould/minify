@@ -11,12 +11,8 @@ chmod +x minify.js
 
 ```
 ./minify.js --in test/test.js
-======================
 SAVED test/test.min.js
-```
-```
 ./minify.js --in test/test.css -g
-===============================
 SAVED test/81d0628.test.min.css
 ```
 
