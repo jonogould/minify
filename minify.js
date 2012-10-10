@@ -21,6 +21,10 @@ program
 	.option('-G, --fullgitcommit', 'Prepends the full git commit hash to the output filename.')
 	.parse(process.argv);
 
+if (! program.in && process.argv.length > 2) {
+	program.in = process.argv[2];
+}
+
 if (! program.in) {
 	console.log('no input file');
 	shell.exit(-1);
