@@ -34,6 +34,8 @@ if (! program.in.endsWith('.css') && ! program.in.endsWith('.js')) {
 
 if (! program.out) program.out = program.in;
 
+var output;
+
 // path to file
 var path = program.in.split('/');
 path.pop();
@@ -89,9 +91,6 @@ extension = 'min.' + extension;
 
 // done modifying filename
 
-console.log(name + '.' + extension);
-shell.exit(-1);
-
 if (program.in.endsWith('.css')) {
 	var minify = require(__dirname + '/lib/css').minify;
 }
@@ -100,5 +99,9 @@ if (program.in.endsWith('.js')) {
 	var minify = require(__dirname + '/lib/js').minify;
 }
 
-minify(program.in, program.out);
-console.log('saved ' + program.out);
+if (path) path += '/';
+
+var output = path + name + '.' + extension;
+
+minify(program.in, output);
+console.log('saved ' + output);
