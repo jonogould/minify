@@ -16,6 +16,8 @@ program
 	.option('-o, --out [file]', 'File to write minified output to (optional).')
 	.option('-p, --prepend [string]', 'Will prepend [string] to the output filename.')
 	.option('-a, --append [string]', 'Will append [string] to the output filename, in front of the file extension.')
+	.option('-g, --gitcommit', 'Prepends the abbreviated git commit hash to the output filename.')
+	.option('-G, --fullgitcommit', 'Prepends the full git commit hash to the output filename.')
 	.parse(process.argv);
 
 if (! program.in) {
@@ -32,36 +34,63 @@ if (! program.in.endsWith('.css') && ! program.in.endsWith('.js')) {
 
 if (! program.out) program.out = program.in;
 
+// path to file
+var path = program.in.split('/');
+path.pop();
+path = path.join('/');
+
+// full filename
+var filename = _.last(program.in.split('/'));
+
+// file extension
+var extension = _.last(filename.split('.'));
+
+// filename without the extension
+var name = filename.split('.');
+name.pop();
+
+function append(str) {
+	name = name + str;
+}
+
+function prepend(str) {
+	name = str + name;
+}
+
 // append to filename
 
 if (program.append) {
-	var paths = program.out.split('/');
-	var filename = program.out.split('/').pop();
-	var extension = _.last(filename.split('.'));
-	var name = filename.replace('.' + extension, '');
-	paths.pop();
-	paths.push(name + program.append + '.' + extension);
-	program.out = paths.join('/');
+	append(program.append);
 }
 
 // prepend to filename
 
 if (program.prepend) {
-	var paths = program.out.split('/');
-	var filename = program.out.split('/').pop();
-	paths.pop();
-	paths.push(program.prepend + filename);
-	program.out = paths.join('/');
+	prepend(program.prepend);
 }
 
-// add .min to filename
+// git commit hash
 
-var split = program.out.split('.');
-program.out = _.first(split) + '.min.' + _.last(split);
+if (program.gitcommit && ! program.fullgitcommit) {
+	var cmd = shell.exec("git log --pretty=format:'%h' -n 1", {silent:true});
+	if (cmd.code !== 0) return;
+	prepend(cmd.output + '.');
+}
+
+if (program.fullgitcommit) {
+	var cmd = shell.exec("git log --pretty=format:'%H' -n 1", {silent:true});
+	if (cmd.code !== 0) return;
+	prepend(cmd.output + '.');
+}
+
+// prepend min.
+
+extension = 'min.' + extension;
 
 // done modifying filename
 
-console.log(program.out);
+console.log(name + '.' + extension);
+shell.exit(-1);
 
 if (program.in.endsWith('.css')) {
 	var minify = require(__dirname + '/lib/css').minify;
