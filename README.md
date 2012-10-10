@@ -23,7 +23,9 @@ npm install .
 
 ### Usage
 
-Usage Options:
+Usage: minify.js [options]
+
+Options:
 
 ```
 -h, --help              output usage information
