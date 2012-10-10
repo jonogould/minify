@@ -107,5 +107,5 @@ var output = path + name + '.' + extension;
 minify(program.in, output);
 
 var lines = 'SAVED ' + output;
-console.log(lines.replace(/./gi, '-'));
+console.log(lines.replace(/./gi, '='));
 console.log(clc.green('SAVED ') + output);
