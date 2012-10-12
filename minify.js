@@ -50,5 +50,5 @@ _.each(app.args, function (file) {
 	var saved = fs.statSync(file).size - fs.statSync(output).size;
 
 	console.log(clc.green('SAVED ') + output);
-	console.log('file size reduced by ' + saved + 'B');
+	console.log(clc.blue('INFO ') + 'file size reduced by ' + saved + 'B');
 });
