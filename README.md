@@ -7,13 +7,12 @@ npm install .
 chmod +x minify.js
 ```
 
-### Test
+### Usage
 
 ```
-./minify.js --in test/test.js
-SAVED test/test.min.js
-./minify.js --in test/test.css -h
-SAVED test/81d0628.test.min.css
+./minify.js test/test.js
+./minify.js test/*.css
+./minify.js test/**
 ```
 
 ### UglifyJS 2
