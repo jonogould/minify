@@ -21,7 +21,9 @@ app
 	.option('-h, --hash', 'prepends the abbreviated git commit hash to the output filename.')
 	.parse(process.argv);
 
-var supported = ['js', 'css', 'php', 'html'];
+var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
+
+// coming soon... png, jpg and jpeg
 
 _.each(app.args, function (file) {
 
@@ -40,7 +42,9 @@ _.each(app.args, function (file) {
 	var output = util.output(file, app);
 
 	// grab the appropriate minifier
-	var minifier = require(__dirname + '/lib/' + extension);
+	var lib = extension;
+	if (lib === 'jpeg') lib = 'jpg';
+	var minifier = require(__dirname + '/lib/' + lib);
 
 	// hot sauce
 	minifier.minify(file, output, __dirname);
