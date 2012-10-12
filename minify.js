@@ -30,23 +30,32 @@ app
 	.option('-n, --noimages', 'skip images')
 	.parse(process.argv);
 
+// check for input files
 if (app.args.length === 0) {
 	console.log("watsup yo! you didn't select any files");
 }
 
-// check requirements
+// check for git
 if (! shell.which('git')) {
 	console.log('oops, please install git');
 	shell.exit(-1);
 }
 
+// check for jpegtran
 if (! shell.which('jpegtran')) {
 	console.log('oops, please install jpegtran');
 	shell.exit(-1);
 }
 
+// check for optipng
 if (! shell.which('optipng')) {
 	console.log('oops, please install optipng');
+	shell.exit(-1);
+}
+
+// --nomin requires an output to be set
+if (app.nomin && ! app.output) {
+	console.log(clc.red('ERROR ') + 'To use the --nomin flag you must set an output path.');
 	shell.exit(-1);
 }
 
@@ -61,11 +70,6 @@ if (app.nojs) skip.push('js');
 if (app.nopng) skip.push('png');
 if (app.nojpeg) skip.push('jpeg', 'jpg');
 if (app.noimages) skip.push('png', 'jpg', 'jpeg');
-
-if (app.nomin && ! app.output) {
-	console.log(clc.red('ERROR ') + 'To use the --nomin flag you must set an output path.');
-	shell.exit(-1);
-}
 
 _.each(app.args, function (file) {
 
