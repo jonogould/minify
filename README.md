@@ -9,14 +9,6 @@ chmod +x minify.js
 npm install .
 ```
 
-### Usage
-
-```
-./minify.js test/test.js
-./minify.js test/*.css
-./minify.js test/**
-```
-
 ### UglifyJS 2
 
 As of 2012-10-10, the uglify-js2 npm module doesn't contain the minify object.
@@ -40,3 +32,23 @@ Usage: minify.js [options]
 	-V, --version        output the version number
 	-o, --output [path]  specify an output path (optional).
 	-h, --hash           prepends the abbreviated git commit hash to the output filename.
+	-n, --nomin          don't add .min to the output, requires an output path to be set
+	-n, --nophp          skip php files
+	-n, --nohtml         skip html files
+	-n, --nocss          skip css files
+	-n, --nojs           skip javascript files
+	-n, --nopng          skip png files
+	-n, --nojpeg         skip jpeg/jpg files
+	-n, --noimages       skip images
+
+eg. Optimize a single file
+
+	./minify.js test/test.css
+
+eg. Optimize all files
+
+	./minify.js test/*
+
+eg. Optimize an entire project
+
+	./minify.js src/**/** --nomin --nophp --output dist
