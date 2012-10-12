@@ -1,111 +1,37 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var program = require('commander');
-var shell = require('shelljs');
+var app = require('commander');
+// var shell = require('shelljs/global');
 var _ = require('underscore');
-var packageJSON = JSON.parse(fs.readFileSync(__dirname + '/package.json'));
-var clc = require('cli-color');
 
 String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
 };
 
-program
-	.version(packageJSON.version)
-	.option('-i, --in [file]', 'File to compress.')
-	.option('-o, --out [file]', 'File to write minified output to (optional).')
-	.option('-p, --prepend [string]', 'Will prepend [string] to the output filename.')
-	.option('-a, --append [string]', 'Will append [string] to the output filename, in front of the file extension.')
+app
+	.version('0.2.0')
+	.option('-o, --output', 'Specify an output path (optional).')
 	.option('-h, --hash', 'Prepends the abbreviated git commit hash to the output filename.')
-	.option('-H, --longhash', 'Prepends the full git commit hash to the output filename.')
 	.parse(process.argv);
 
-if (! program.in && process.argv.length > 2) {
-	program.in = process.argv[2];
-}
+var supported = ['js', 'css', 'php', 'html'];
 
-if (! program.in) {
-	console.log('no input file');
-	shell.exit(-1);
-}
+_.each(app.args, function (file) {
 
-var output;
+	var extension = _.last(file.split('.'));
 
-// path to file
-var path = program.in.split('/');
-path.pop();
-path = path.join('/');
+	// make sure filetype is supported
+	if (! _.contains(supported, extension)) return;
 
-// full filename
-var filename = _.last(program.in.split('/'));
+	// skip files that contain '.min'
+	if (file.search('.min') > 0) return;
 
-// file extension
-var extension = _.last(filename.split('.'));
+	// create the output filename
+	var output = util.output(file, app);
 
-// filename without the extension
-var name = filename.split('.');
-name.pop();
+	// grab the appropriate minifier
+	var minifier = require(__dirname + '/lib/' + extension);
 
-// validate file type
+	minifier.minify(file, output);
 
-var supported = ['js', 'css', 'html', 'php'];
-
-if (! _.contains(supported, extension)) {
-	console.log('invalid input file');
-	shell.exit(-1);
-}
-
-if (! program.out) program.out = program.in;
-
-function append(str) {
-	name = name + str;
-}
-
-function prepend(str) {
-	name = str + name;
-}
-
-// append to filename
-
-if (program.append) {
-	append(program.append);
-}
-
-// prepend to filename
-
-if (program.prepend) {
-	prepend(program.prepend);
-}
-
-// git commit hash
-
-if (program.hash && ! program.longhash) {
-	var cmd = shell.exec("git log --pretty=format:'%h' -n 1", {silent:true});
-	if (cmd.code !== 0) return;
-	prepend(cmd.output + '.');
-}
-
-if (program.longhash) {
-	var cmd = shell.exec("git log --pretty=format:'%H' -n 1", {silent:true});
-	if (cmd.code !== 0) return;
-	prepend(cmd.output + '.');
-}
-
-// done modifying filename
-
-var minify = require(__dirname + '/lib/' + extension).minify;
-
-if (path) path += '/';
-
-var output = path + name + '.min.' + extension;
-
-minify(program.in, output, __dirname);
-
-var original_size = fs.statSync(program.in);
-var compressed_size = fs.statSync(output);
-var saved = original_size.size - compressed_size.size;
-
-console.log(clc.green('SAVED ') + output);
-console.log('Reduced file size by ' + saved + 'B');
-
+});
