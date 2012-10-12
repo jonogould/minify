@@ -102,6 +102,10 @@ var output = path + name + '.min.' + extension;
 
 minify(program.in, output, __dirname);
 
-var lines = 'SAVED ' + output;
-// console.log(lines.replace(/./gi, '='));
+var original_size = fs.statSync(program.in);
+var compressed_size = fs.statSync(output);
+var saved = original_size.size - compressed_size.size;
+
 console.log(clc.green('SAVED ') + output);
+console.log('Reduced file size by ' + saved + 'B');
+
