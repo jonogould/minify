@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var app = require('commander');
-// var shell = require('shelljs/global');
+var util = require(__dirname + '/lib/util');
 var _ = require('underscore');
 
 String.prototype.endsWith = function (str) {
@@ -32,6 +32,6 @@ _.each(app.args, function (file) {
 	// grab the appropriate minifier
 	var minifier = require(__dirname + '/lib/' + extension);
 
-	minifier.minify(file, output);
+	minifier.minify(file, output, __dirname);
 
 });
