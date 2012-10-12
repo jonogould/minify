@@ -15,8 +15,8 @@ String.prototype.endsWith = function (str) {
 
 app
 	.version('0.2.0')
-	.option('-o, --output [path]', 'Specify an output path (optional).')
-	.option('-h, --hash', 'Prepends the abbreviated git commit hash to the output filename.')
+	.option('-o, --output [path]', 'specify an output path (optional).')
+	.option('-h, --hash', 'prepends the abbreviated git commit hash to the output filename.')
 	.parse(process.argv);
 
 var supported = ['js', 'css', 'php', 'html'];
