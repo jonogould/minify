@@ -30,15 +30,6 @@ if (! program.in) {
 	shell.exit(-1);
 }
 
-// validate file type
-
-if (! program.in.endsWith('.css') && ! program.in.endsWith('.js')) {
-	console.log('invalid input file');
-	shell.exit(-1);
-}
-
-if (! program.out) program.out = program.in;
-
 var output;
 
 // path to file
@@ -55,6 +46,17 @@ var extension = _.last(filename.split('.'));
 // filename without the extension
 var name = filename.split('.');
 name.pop();
+
+// validate file type
+
+var supported = ['js', 'css', 'html', 'php'];
+
+if (! _.contains(supported, extension)) {
+	console.log('invalid input file');
+	shell.exit(-1);
+}
+
+if (! program.out) program.out = program.in;
 
 function append(str) {
 	name = name + str;
@@ -90,25 +92,15 @@ if (program.fullgitcommit) {
 	prepend(cmd.output + '.');
 }
 
-// prepend min.
-
-extension = 'min.' + extension;
-
 // done modifying filename
 
-if (program.in.endsWith('.css')) {
-	var minify = require(__dirname + '/lib/css').minify;
-}
-
-if (program.in.endsWith('.js')) {
-	var minify = require(__dirname + '/lib/js').minify;
-}
+var minify = require(__dirname + '/lib/' + extension).minify;
 
 if (path) path += '/';
 
-var output = path + name + '.' + extension;
+var output = path + name + '.min.' + extension;
 
-minify(program.in, output);
+minify(program.in, output, __dirname);
 
 var lines = 'SAVED ' + output;
 // console.log(lines.replace(/./gi, '='));
