@@ -30,6 +30,26 @@ app
 	.option('-n, --noimages', 'skip images')
 	.parse(process.argv);
 
+if (app.args.length === 0) {
+	console.log("watsup yo! you didn't select any files");
+}
+
+// check requirements
+if (! shell.which('git')) {
+	console.log('oops, please install git');
+	shell.exit(-1);
+}
+
+if (! shell.which('jpegtran')) {
+	console.log('oops, please install jpegtran');
+	shell.exit(-1);
+}
+
+if (! shell.which('optipng')) {
+	console.log('oops, please install optipng');
+	shell.exit(-1);
+}
+
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
 
 var skip = [];
