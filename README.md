@@ -41,14 +41,14 @@ Usage: minify.js [options]
 	--nojpeg             skip jpeg/jpg files
 	--noimages           skip images
 
-eg. Optimize a single file
+optimize a single file
 
 	./minify.js test/test.css
 
-eg. Optimize all files
+optimize all files
 
 	./minify.js test/*
 
-eg. Optimize an entire project
+optimize an entire project
 
 	./minify.js src/**/** --nomin --noimages --nophp --output dist --hash
