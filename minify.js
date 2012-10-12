@@ -2,10 +2,12 @@
 
 // node modules
 var fs = require('fs');
+
 // npm modules
 var app = require('commander');
 var _ = require('underscore');
 var clc = require('cli-color');
+
 // app modules
 var util = require(__dirname + '/lib/util');
 
