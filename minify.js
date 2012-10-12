@@ -21,13 +21,13 @@ app
 	.option('-o, --output [path]', 'specify an output path (optional).')
 	.option('-h, --hash', 'prepends the abbreviated git commit hash to the output filename.')
 	.option('-n, --nomin', "don't add .min to the output, requires an output path to be set")
-	.option('-n, --nophp', 'skip php files')
-	.option('-n, --nohtml', 'skip html files')
-	.option('-n, --nocss', 'skip css files')
-	.option('-n, --nojs', 'skip javascript files')
-	.option('-n, --nopng', 'skip png files')
-	.option('-n, --nojpeg', 'skip jpeg/jpg files')
-	.option('-n, --noimages', 'skip images')
+	.option('--nophp', 'skip php files')
+	.option('--nohtml', 'skip html files')
+	.option('--nocss', 'skip css files')
+	.option('--nojs', 'skip javascript files')
+	.option('--nopng', 'skip png files')
+	.option('--nojpeg', 'skip jpeg/jpg files')
+	.option('--noimages', 'skip images')
 	.parse(process.argv);
 
 // check for input files

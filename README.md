@@ -33,13 +33,13 @@ Usage: minify.js [options]
 	-o, --output [path]  specify an output path (optional).
 	-h, --hash           prepends the abbreviated git commit hash to the output filename.
 	-n, --nomin          don't add .min to the output, requires an output path to be set
-	-n, --nophp          skip php files
-	-n, --nohtml         skip html files
-	-n, --nocss          skip css files
-	-n, --nojs           skip javascript files
-	-n, --nopng          skip png files
-	-n, --nojpeg         skip jpeg/jpg files
-	-n, --noimages       skip images
+	--nophp              skip php files
+	--nohtml             skip html files
+	--nocss              skip css files
+	--nojs               skip javascript files
+	--nopng              skip png files
+	--nojpeg             skip jpeg/jpg files
+	--noimages           skip images
 
 eg. Optimize a single file
 
