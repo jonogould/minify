@@ -26,7 +26,10 @@ _.each(app.args, function (file) {
 	var extension = _.last(file.split('.'));
 
 	// skip files that contain '.min'
-	if (file.search('.min') > 0) return;
+	if (file.search('.min') > 0) {
+		console.log(clc.yellow('SKIPPED ') + file);
+		return;
+	}
 
 	// make sure filetype is supported
 	if (! _.contains(supported, extension)) return;
