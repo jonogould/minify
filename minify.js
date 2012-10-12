@@ -23,8 +23,6 @@ app
 
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
 
-// coming soon... png, jpg and jpeg
-
 _.each(app.args, function (file) {
 
 	var extension = _.last(file.split('.'));

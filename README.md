@@ -1,11 +1,12 @@
 ### Install
 
 ```
+brew install jpeg-turbo pngcrush
+brew link jpeg-turbo
 git clone git@github.com:wayneashleyberry/minify.git
 cd minify
-npm install .
-brew install jpegtran pngcrush
 chmod +x minify.js
+npm install .
 ```
 
 ### Usage
