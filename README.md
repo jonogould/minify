@@ -51,4 +51,4 @@ eg. Optimize all files
 
 eg. Optimize an entire project
 
-	./minify.js src/**/** --nomin --nophp --output dist
+	./minify.js src/**/** --nomin --noimages --nophp --output dist --hash

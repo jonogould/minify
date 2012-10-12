@@ -7,6 +7,7 @@ var fs = require('fs');
 var app = require('commander');
 var _ = require('underscore');
 var clc = require('cli-color');
+var shell = require('shelljs');
 
 // app modules
 var util = require(__dirname + '/lib/util');
@@ -40,6 +41,11 @@ if (app.nojs) skip.push('js');
 if (app.nopng) skip.push('png');
 if (app.nojpeg) skip.push('jpeg', 'jpg');
 if (app.noimages) skip.push('png', 'jpg', 'jpeg');
+
+if (app.nomin && ! app.output) {
+	console.log(clc.red('ERROR ') + 'To use the --nomin flag you must set an output path.');
+	shell.exit(-1);
+}
 
 _.each(app.args, function (file) {
 
