@@ -17,8 +17,8 @@ program
 	.option('-o, --out [file]', 'File to write minified output to (optional).')
 	.option('-p, --prepend [string]', 'Will prepend [string] to the output filename.')
 	.option('-a, --append [string]', 'Will append [string] to the output filename, in front of the file extension.')
-	.option('-g, --gitcommit', 'Prepends the abbreviated git commit hash to the output filename.')
-	.option('-G, --fullgitcommit', 'Prepends the full git commit hash to the output filename.')
+	.option('-h, --hash', 'Prepends the abbreviated git commit hash to the output filename.')
+	.option('-H, --longhash', 'Prepends the full git commit hash to the output filename.')
 	.parse(process.argv);
 
 if (! program.in && process.argv.length > 2) {
@@ -80,13 +80,13 @@ if (program.prepend) {
 
 // git commit hash
 
-if (program.gitcommit && ! program.fullgitcommit) {
+if (program.hash && ! program.longhash) {
 	var cmd = shell.exec("git log --pretty=format:'%h' -n 1", {silent:true});
 	if (cmd.code !== 0) return;
 	prepend(cmd.output + '.');
 }
 
-if (program.fullgitcommit) {
+if (program.longhash) {
 	var cmd = shell.exec("git log --pretty=format:'%H' -n 1", {silent:true});
 	if (cmd.code !== 0) return;
 	prepend(cmd.output + '.');

@@ -12,7 +12,7 @@ chmod +x minify.js
 ```
 ./minify.js --in test/test.js
 SAVED test/test.min.js
-./minify.js --in test/test.css -g
+./minify.js --in test/test.css -h
 SAVED test/81d0628.test.min.css
 ```
 
@@ -33,13 +33,13 @@ npm install .
 
 Usage: minify.js [options]
 
-  Options:
+Options:
 
-    -h, --help              output usage information
-    -V, --version           output the version number
-    -i, --in [file]         File to compress.
-    -o, --out [file]        File to write minified output to (optional).
-    -p, --prepend [string]  Will prepend [string] to the output filename.
-    -a, --append [string]   Will append [string] to the output filename, in front of the file extension.
-    -g, --gitcommit         Prepends the abbreviated git commit hash to the output filename.
-    -G, --fullgitcommit     Prepends the full git commit hash to the output filename.
+	-h, --help              output usage information
+	-V, --version           output the version number
+	-i, --in [file]         File to compress.
+	-o, --out [file]        File to write minified output to (optional).
+	-p, --prepend [string]  Will prepend [string] to the output filename.
+	-a, --append [string]   Will append [string] to the output filename, in front of the file extension.
+	-h, --hash              Prepends the abbreviated git commit hash to the output filename.
+	-H, --longhash          Prepends the full git commit hash to the output filename.
