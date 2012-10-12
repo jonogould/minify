@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
+// node modules
+var fs = require('fs');
+// npm modules
 var app = require('commander');
-var util = require(__dirname + '/lib/util');
 var _ = require('underscore');
+var clc = require('cli-color');
+// app modules
+var util = require(__dirname + '/lib/util');
 
 String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
@@ -32,6 +37,11 @@ _.each(app.args, function (file) {
 	// grab the appropriate minifier
 	var minifier = require(__dirname + '/lib/' + extension);
 
+	// hot sauce
 	minifier.minify(file, output, __dirname);
 
+	var saved = fs.statSync(file).size - fs.statSync(output).size;
+
+	console.log(clc.green('SAVED ') + output);
+	console.log('file size reduced by ' + saved + 'B');
 });
