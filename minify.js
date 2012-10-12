@@ -19,6 +19,7 @@ app
 	.version('0.2.0')
 	.option('-o, --output [path]', 'specify an output path (optional).')
 	.option('-h, --hash', 'prepends the abbreviated git commit hash to the output filename.')
+	.option('-n, --nomin', "don't add .min to the output, requires an output path to be set")
 	.parse(process.argv);
 
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
@@ -30,6 +31,7 @@ _.each(app.args, function (file) {
 	// skip files that contain '.min'
 	if (file.search('.min') > 0) {
 		console.log(clc.underline('Skipping ' + '"' + file + '"'));
+		console.log('');
 		return;
 	}
 
@@ -44,13 +46,21 @@ _.each(app.args, function (file) {
 	if (lib === 'jpeg') lib = 'jpg';
 	var minifier = require(__dirname + '/lib/' + lib);
 
+	if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
+		var message = 'Compressing';
+	} else {
+		var message = 'Minifying';
+	}
+
+	console.log(clc.underline(message + ' "' + file + '"'));
+
 	// hot sauce
 	minifier.minify(file, output, __dirname);
 
 	var saved = fs.statSync(file).size - fs.statSync(output).size;
 
-	console.log(clc.underline('Minifying ' + '"' + file + '"'));
 	console.log(clc.green('SAVED ') + output);
 	console.log(clc.blue('INFO ') + 'file size reduced by ' + saved + 'B');
 	console.log('');
+
 });
