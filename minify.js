@@ -35,23 +35,12 @@ if (app.args.length === 0) {
 	console.log("watsup yo! you didn't select any files");
 }
 
-// check for git
-if (! shell.which('git')) {
-	console.log('oops, please install git');
-	shell.exit(-1);
-}
-
-// check for jpegtran
-if (! shell.which('jpegtran')) {
-	console.log('oops, please install jpegtran');
-	shell.exit(-1);
-}
-
-// check for optipng
-if (! shell.which('optipng')) {
-	console.log('oops, please install optipng');
-	shell.exit(-1);
-}
+_.each(['git', 'jpegtran', 'optipng'], function (prereq) {
+	if ( ! shell.which(prereq) ) {
+		console.log('oops, please install ' + prereq);
+		shell.exit(-1);
+	}
+});
 
 // --nomin requires an output to be set
 if (app.nomin && ! app.output) {
