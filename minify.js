@@ -36,10 +36,9 @@ if (app.args.length === 0) {
 }
 
 _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
-	if ( ! shell.which(prereq) ) {
-		console.log('oops, please install ' + prereq);
-		shell.exit(-1);
-	}
+	if ( shell.which(prereq) ) return;
+	console.log('oops, please install ' + prereq);
+	shell.exit(-1);
 });
 
 // --nomin requires an output to be set
