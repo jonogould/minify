@@ -9,8 +9,6 @@ chmod +x minify.js
 npm install .
 ```
 
-### UglifyJS 2
-
 As of 2012-10-10, the uglify-js2 npm module doesn't contain the minify object.
 You have to clone the repo yourself.
 
