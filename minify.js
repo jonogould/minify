@@ -21,7 +21,7 @@ app
 	.option('-o, --output [path]', 'specify an output path (optional).')
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename.')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output.')
-	.option('-n, --nomin', "don't add .min to the output, requires an output path to be set")
+	.option('-a, --append [string]', 'append a custom string to the output filename', '.min')
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
 	.option('--nocss', 'skip css files')
@@ -36,6 +36,7 @@ if (app.args.length === 0) {
 	console.log("watsup yo! you didn't select any files");
 }
 
+// check for command-line tools
 _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
 	if ( shell.which(prereq) ) return;
 	console.log('oops, please install ' + prereq);

@@ -1,7 +1,3 @@
 *.log
 node_modules
-test/public/css/*.min.*
-test/public/js/*.min.*
-test/public/img/*.min.*
-test/public/html/*.min.*
-test/public/php/*.min.*
+test/*.min.*
