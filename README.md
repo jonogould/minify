@@ -1,8 +1,22 @@
-### Install
+Minify
+=======
+
+Minify is a simple command-line wrapper that can minify almost anything.
+
+Listed below are the supported filetypes and what's actually used to minify them.
+
+- javascript [uglify-js2](https://github.com/mishoo/UglifyJS2)
+- css [r.js](https://github.com/jrburke/r.js/)
+- php [htmlcompressor](http://code.google.com/p/htmlcompressor/)
+- html [htmlcompressor](http://code.google.com/p/htmlcompressor/)
+- png [pngcrush](http://pmt.sourceforge.net/pngcrush/)
+- jpeg [jpegtran](http://jpegclub.org/jpegtran/)
+
+Defaults for image compression were inspired by [Yahoo](http://developer.yahoo.com/performance/rules.html#opt_images)
+
+### Installation
 
 ```
-brew install jpeg-turbo pngcrush
-brew link jpeg-turbo
 git clone git@github.com:wayneashleyberry/minify.git
 cd minify
 chmod +x minify.js
@@ -20,9 +34,16 @@ cd uglify-js2
 npm install .
 ```
 
+### Dependencies
+
+```
+brew install jpeg-turbo pngcrush
+brew link jpeg-turbo
+```
+
 ### Usage
 
-Usage: ``` minify.js test/test.css [options] ```
+Usage: ``` minify.js [file] [options] ```
 
 Options:
 
@@ -40,14 +61,14 @@ Options:
     --nojpeg               skip jpeg/jpg files
     --noimages             skip images
 
-optimize a single file
+Optimize a single file
 
 	./minify.js test/test.css
 
-optimize all files
+Optimize all files
 
 	./minify.js test/*
 
-optimize an entire project
+Optimize an entire project, skipping php and appending content hashes
 
-	./minify.js src/**/** --git-hash --nophp --output dist 
+	./minify.js src/**/** --content-hash --nophp --output dist 
