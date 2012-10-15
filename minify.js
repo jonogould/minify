@@ -32,6 +32,8 @@ app
 	.option('--noimages', 'skip images')
 	.parse(process.argv);
 
+app.__dirname = __dirname;
+
 // check for input files
 if (app.args.length === 0) {
 	console.log("watsup yo! you didn't select any files");
@@ -97,7 +99,7 @@ _.each(app.args, function (file) {
 	if (lib === 'jpeg') lib = 'jpg';
 
 	// grab the appropriate minifier
-	var minifier = require(__dirname + '/lib/' + lib);
+	var minifier = require(__dirname + '/minifiers/' + lib);
 
 	var message = 'Minifying';
 
@@ -108,7 +110,7 @@ _.each(app.args, function (file) {
 	console.log(clc.underline(message + ' "' + file + '"'));
 
 	// hot sauce
-	minifier.minify(file, output, __dirname);
+	minifier.minify(file, output, app);
 
 	// prepend content hash
 	if (app['contentHash']) {
