@@ -22,7 +22,7 @@ npm install .
 
 ### Usage
 
-Usage: minify.js [options]
+Usage: ``` minify.js test/test.css [options] ```
 
 	Options:
 
