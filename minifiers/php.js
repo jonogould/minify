@@ -9,4 +9,4 @@ exports.minify = function (input, output, app) {
 		output : output
 	};
 	shell.exec(t(cmd, args), {silent: true});
-}
+};

@@ -7,6 +7,6 @@ exports.minify = function (input, output, app) {
 		dir    : app.__dirname,
 		input  : input,
 		output : output
-	}
+	};
 	shell.exec(t(cmd, args), {silent: true});
-}
+};
