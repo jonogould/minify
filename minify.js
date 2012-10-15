@@ -19,7 +19,7 @@ String.prototype.endsWith = function (str) {
 
 
 app
-	.version('0.2.0')
+	.version('0.3.0')
 	.option('-o, --output [path]', 'specify an output path (optional)')
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
