@@ -1,5 +1,5 @@
-exports.minify = function (i, o, app) {
+exports.minify = function (input, output, app) {
 	var uglify = require('uglify-js2');
-	var result = uglify.minify(i);
-	result.code.to(o);
+	var result = uglify.minify(input);
+	result.code.to(output);
 }

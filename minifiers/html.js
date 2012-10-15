@@ -1,5 +1,12 @@
-exports.minify = function (i, o, app) {
-	var shell = require('shelljs');
-	var cmd = 'java -jar ' + app.__dirname + '/bin/htmlcompressor-1.5.3.jar ' + i + ' -o ' + o;
-	shell.exec(cmd);
+var t = require('minify-util').t;
+var shell = require('shelljs');
+
+exports.minify = function (input, output, app) {
+	var cmd = 'java -jar {{dir}}/bin/htmlcompressor-1.5.3.jar {{input}} -o {{output}}';
+	var args = {
+		dir    : app.__dirname,
+		input  : input,
+		output : output
+	}
+	shell.exec(t(cmd, args), {silent: true});
 }

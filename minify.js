@@ -10,8 +10,8 @@ var clc = require('cli-color');
 var shell = require('shelljs');
 
 // app modules
-var util = require(__dirname + '/lib/util');
-var hash = require(__dirname + '/lib/hash').hash;
+var util = require('minify-util');
+var hash = require('minify-hash').hash;
 
 String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
