@@ -31,7 +31,7 @@ Options:
     -o, --output [path]    specify an output path (optional).
     -g, --git-hash         prepends the abbreviated git commit hash to the output filename.
     -c, --content-hash     prepends an abbreviated hash based on the minified output.
-    -a, --append [string]  append a custom string to the output filename.
+    -a, --append [string]  append a custom string to the output filename, defaults to '.min'
     --nophp                skip php files
     --nohtml               skip html files
     --nocss                skip css files
