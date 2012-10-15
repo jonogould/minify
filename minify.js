@@ -23,7 +23,7 @@ app
 	.option('-o, --output [path]', 'specify an output path (optional)')
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
-	.option('-a, --append [string]', 'append a custom string to the output filename, defaults to \'.min\'', '.min')
+	.option('-a, --append [string]', 'append a custom string to the output filename [.min]', '.min')
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
 	.option('--nocss', 'skip css files')
