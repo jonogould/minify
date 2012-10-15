@@ -44,7 +44,7 @@ app.__dirname = __dirname;
 
 // check for input files
 if (app.args.length === 0) {
-	console.log("watsup yo! you didn't select any files");
+	console.log(clc.red('ERROR ') + 'you didn\'t select any files');
 }
 
 // check for command-line tools
@@ -77,11 +77,11 @@ _.each(app.args, function (file) {
 	try {
 		var stat = fs.statSync(file);
 		if (! stat.isFile()) {
-			console.log(clc.red('ERROR ') + '"' + file + '" is not a valid file');
+			console.log(clc.red('ERROR ') + '"' + file + '" is an invalid file');
 			return;
 		}
 	} catch (er) {
-		console.log(clc.red('ERROR ') + '"' + file + '" is not a valid file');
+		console.log(clc.red('ERROR ') + '"' + file + '" is an invalid file');
 		return;
 	}
 
