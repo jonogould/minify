@@ -20,6 +20,7 @@ app
 	.version('0.2.0')
 	.option('-o, --output [path]', 'specify an output path (optional).')
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename.')
+	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output.')
 	.option('-n, --nomin', "don't add .min to the output, requires an output path to be set")
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
@@ -51,12 +52,12 @@ var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
 
 var skip = [];
 
-if (app.nophp) skip.push('php');
-if (app.nohtml) skip.push('html');
-if (app.nocss) skip.push('css');
-if (app.nojs) skip.push('js');
-if (app.nopng) skip.push('png');
-if (app.nojpeg) skip.push('jpeg', 'jpg');
+if (app.nophp)    skip.push('php');
+if (app.nohtml)   skip.push('html');
+if (app.nocss)    skip.push('css');
+if (app.nojs)     skip.push('js');
+if (app.nopng)    skip.push('png');
+if (app.nojpeg)   skip.push('jpeg', 'jpg');
 if (app.noimages) skip.push('png', 'jpg', 'jpeg');
 
 _.each(app.args, function (file) {
@@ -85,10 +86,10 @@ _.each(app.args, function (file) {
 	// grab the appropriate minifier
 	var minifier = require(__dirname + '/lib/' + lib);
 
+	var message = 'Minifying';
+
 	if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
 		var message = 'Compressing';
-	} else {
-		var message = 'Minifying';
 	}
 
 	console.log(clc.underline(message + ' "' + file + '"'));
@@ -101,5 +102,4 @@ _.each(app.args, function (file) {
 	console.log(clc.green('SAVED ') + output);
 	console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
 	console.log('');
-
 });
