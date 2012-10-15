@@ -13,11 +13,6 @@ var shell = require('shelljs');
 var util = require('minify-util');
 var hash = require('minify-hash').hash;
 
-String.prototype.endsWith = function (str) {
-	return this.substr(-str.length) === str;
-};
-
-
 app
 	.version('0.3.1')
 	.option('-o, --output [path]', 'specify an output path (optional)')
