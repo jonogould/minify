@@ -27,7 +27,7 @@ Usage: ``` minify.js test/test.css [options] ```
 Options:
 
     -h, --help             output usage information
-    -V, --version          output the version number
+    -v, --version          output the version number
     -o, --output [path]    specify an output path (optional).
     -g, --git-hash         prepends the abbreviated git commit hash to the output filename.
     -c, --content-hash     prepends an abbreviated hash based on the minified output.

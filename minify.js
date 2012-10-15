@@ -17,11 +17,12 @@ String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
 };
 
+
 app
 	.version('0.2.0')
-	.option('-o, --output [path]', 'specify an output path (optional).')
-	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename.')
-	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output.')
+	.option('-o, --output [path]', 'specify an output path (optional)')
+	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
+	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
 	.option('-a, --append [string]', 'append a custom string to the output filename, defaults to \'.min\'', '.min')
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
@@ -29,9 +30,16 @@ app
 	.option('--nojs', 'skip javascript files')
 	.option('--nopng', 'skip png files')
 	.option('--nojpeg', 'skip jpeg/jpg files')
-	.option('--noimages', 'skip images')
-	.parse(process.argv);
+	.option('--noimages', 'skip images');
 
+// set version flag to lowercase
+app.options[0].flags = '-v, --version';
+app.options[0].short = '-v';
+
+// parse cli arguments
+app.parse(process.argv);
+
+// set dirname
 app.__dirname = __dirname;
 
 // check for input files
