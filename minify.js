@@ -19,7 +19,7 @@ String.prototype.endsWith = function (str) {
 app
 	.version('0.2.0')
 	.option('-o, --output [path]', 'specify an output path (optional).')
-	.option('-h, --hash', 'prepends the abbreviated git commit hash to the output filename.')
+	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename.')
 	.option('-n, --nomin', "don't add .min to the output, requires an output path to be set")
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
@@ -91,9 +91,10 @@ _.each(app.args, function (file) {
 	// create the output filename
 	var output = util.output(file, app);
 
-	// grab the appropriate minifier
 	var lib = extension;
 	if (lib === 'jpeg') lib = 'jpg';
+
+	// grab the appropriate minifier
 	var minifier = require(__dirname + '/lib/' + lib);
 
 	if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
@@ -107,10 +108,10 @@ _.each(app.args, function (file) {
 	// hot sauce
 	minifier.minify(file, output, __dirname);
 
-	var saved = fs.statSync(file).size - fs.statSync(output).size;
+	var diff = fs.statSync(file).size - fs.statSync(output).size;
 
 	console.log(clc.green('SAVED ') + output);
-	console.log(clc.blue('INFO ') + 'file size reduced by ' + saved + 'B');
+	console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
 	console.log('');
 
 });
