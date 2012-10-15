@@ -64,6 +64,17 @@ if (app.noimages) skip.push('png', 'jpg', 'jpeg');
 
 _.each(app.args, function (file) {
 
+	try {
+		var stat = fs.statSync(file);
+		if (! stat.isDirectory()) {
+			console.log(clc.red('ERROR ') + '"' + file + '" is not a valid file');
+			return;
+		}
+	} catch (er) {
+		console.log(clc.red('ERROR ') + '"' + file + '" is not a valid file');
+		return;
+	}
+
 	var extension = _.last(file.split('.'));
 
 	// check if we're manually skipping this filetype
