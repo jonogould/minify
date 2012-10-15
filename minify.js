@@ -66,7 +66,7 @@ _.each(app.args, function (file) {
 
 	try {
 		var stat = fs.statSync(file);
-		if (! stat.isDirectory()) {
+		if (! stat.isFile()) {
 			console.log(clc.red('ERROR ') + '"' + file + '" is not a valid file');
 			return;
 		}
