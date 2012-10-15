@@ -103,11 +103,8 @@ _.each(app.args, function (file) {
 	// create the output filename
 	var output = util.output(file, app);
 
-	var lib = extension;
-	if (lib === 'jpeg') lib = 'jpg';
-
 	// grab the appropriate minifier
-	var minifier = require(__dirname + '/minifiers/' + lib);
+	var minifier = require('minify-minifiers')[extension];
 
 	var message = 'Minifying';
 
@@ -118,7 +115,7 @@ _.each(app.args, function (file) {
 	console.log(clc.underline(message + ' "' + file + '"'));
 
 	// hot sauce
-	minifier.minify(file, output, app);
+	minifier(file, output, app);
 
 	// prepend content hash
 	if (app['contentHash']) {
