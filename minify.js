@@ -11,6 +11,7 @@ var shell = require('shelljs');
 
 // app modules
 var util = require(__dirname + '/lib/util');
+var hash = require(__dirname + '/lib/hash').hash;
 
 String.prototype.endsWith = function (str) {
 	return this.substr(-str.length) === str;
@@ -97,6 +98,13 @@ _.each(app.args, function (file) {
 
 	// hot sauce
 	minifier.minify(file, output, __dirname);
+
+	// prepend content hash
+	if (app['contentHash']) {
+		var hashed = hash(output);
+		shell.mv(output, hashed);
+		output = hashed;
+	}
 
 	var diff = fs.statSync(file).size - fs.statSync(output).size;
 
