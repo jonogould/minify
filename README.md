@@ -24,20 +24,21 @@ npm install .
 
 Usage: ``` minify.js test/test.css [options] ```
 
-	Options:
+Options:
 
-	-h, --help           output usage information
-	-V, --version        output the version number
-	-o, --output [path]  specify an output path (optional).
-	-h, --hash           prepends the abbreviated git commit hash to the output filename.
-	-n, --nomin          don't add .min to the output, requires an output path to be set
-	--nophp              skip php files
-	--nohtml             skip html files
-	--nocss              skip css files
-	--nojs               skip javascript files
-	--nopng              skip png files
-	--nojpeg             skip jpeg/jpg files
-	--noimages           skip images
+    -h, --help             output usage information
+    -V, --version          output the version number
+    -o, --output [path]    specify an output path (optional).
+    -g, --git-hash         prepends the abbreviated git commit hash to the output filename.
+    -c, --content-hash     prepends an abbreviated hash based on the minified output.
+    -a, --append [string]  append a custom string to the output filename.
+    --nophp                skip php files
+    --nohtml               skip html files
+    --nocss                skip css files
+    --nojs                 skip javascript files
+    --nopng                skip png files
+    --nojpeg               skip jpeg/jpg files
+    --noimages             skip images
 
 optimize a single file
 
@@ -49,4 +50,4 @@ optimize all files
 
 optimize an entire project
 
-	./minify.js src/**/** --nomin --noimages --nophp --output dist --hash
+	./minify.js src/**/** --git-hash --nophp --output dist 
