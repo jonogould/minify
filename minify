@@ -11,7 +11,6 @@ var shell = require('shelljs');
 
 // app modules
 var util = require('minify-util');
-var hash = require('minify-hash').hash;
 
 app
 	.version('0.3.1')
@@ -105,20 +104,15 @@ _.each(app.args, function (file) {
 	// grab the appropriate minifier
 	var minifier = require('minify-minifiers')[extension];
 
-	var message = 'Minifying';
-
-	if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
-		var message = 'Compressing';
-	}
-
 	if (app.verbose)
 	{
-		console.log(clc.underline(message + ' "' + file + '"'));
-	}
+		var message = 'Minifying';
 
-	// prepend content hash
-	if (app.contentHash) {
-		output = hash(file);
+		if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
+			var message = 'Compressing';
+		}
+
+		console.log(clc.underline(message + ' "' + file + '"'));
 	}
 
 	// hot sauce
