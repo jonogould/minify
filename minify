@@ -19,14 +19,8 @@ app
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
 	.option('-a, --append [string]', 'append a custom string to the output filename [.min]', '.min')
-	.option('-v, --verbose', 'write verbose output', false);
-
-// set version flag to lowercase
-app.options[0].flags = '-v, --version';
-app.options[0].short = '-v';
-
-// parse cli arguments
-app.parse(process.argv);
+	.option('-v, --verbose', 'write verbose output', false)
+	.parse(process.argv);
 
 // set dirname
 app.__dirname = __dirname;
