@@ -12,7 +12,7 @@ var shell = require('shelljs');
 
 // app modules
 var util = require('minify-util');
-var package = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+var package = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf-8'));
 
 app
 	.version(package.version)
