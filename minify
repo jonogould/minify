@@ -27,7 +27,10 @@ app
 app.__dirname = __dirname;
 
 // show help if there aren't any input files specified
-if (app.args.length === 0) app.help();
+if (app.args.length === 0) {
+	app.help();
+	process.exit(1);
+}
 
 // check for command-line tools
 _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
