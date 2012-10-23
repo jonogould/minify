@@ -116,20 +116,17 @@ _.each(app.args, function (file) {
 		console.log(clc.underline(message + ' "' + file + '"'));
 	}
 
+	// prepend content hash
+	if (app.contentHash) {
+		output = hash(file);
+	}
+
 	// hot sauce
 	minifier(file, output, app);
 
-	// prepend content hash
-	if (app['contentHash']) {
-		var hashed = hash(output);
-		shell.mv(output, hashed);
-		output = hashed;
-	}
-
-	var diff = fs.statSync(file).size - fs.statSync(output).size;
-
 	if (app.verbose)
 	{
+		var diff = fs.statSync(file).size - fs.statSync(output).size;
 		console.log(clc.green('SAVED ') + output);
 		console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
 		console.log('');
