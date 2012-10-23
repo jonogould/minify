@@ -4,7 +4,7 @@
   "description": "simple command-line wrapper for minifying javascript and css",
   "main": "minify",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./minify test/test.js"
   },
   "repository": {
     "type": "git",
