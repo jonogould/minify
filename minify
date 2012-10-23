@@ -106,6 +106,6 @@ _.each(app.args, function (file) {
 	}
 	else
 	{
-		console.log(file + ':' + output);
+		console.log(file + '\t' + output);
 	}
 });
