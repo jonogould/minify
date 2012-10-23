@@ -34,21 +34,17 @@ brew link jpeg-turbo
 
 Usage: ``` minify.js [file] [options] ```
 
+```
 Options:
 
-    -h, --help             output usage information
-    -v, --version          output the version number
-    -o, --output [path]    specify an output path (optional)
-    -g, --git-hash         prepends the abbreviated git commit hash to the output filename
-    -c, --content-hash     prepends an abbreviated hash based on the minified output
-    -a, --append [string]  append a custom string to the output filename [.min]
-    --nophp                skip php files
-    --nohtml               skip html files
-    --nocss                skip css files
-    --nojs                 skip javascript files
-    --nopng                skip png files
-    --nojpeg               skip jpeg/jpg files
-    --noimages             skip images
+-h, --help             output usage information
+-v, --version          output the version number
+-o, --output [path]    specify an output path (optional)
+-g, --git-hash         prepends the abbreviated git commit hash to the output filename
+-c, --content-hash     prepends an abbreviated hash based on the minified output
+-a, --append [string]  append a custom string to the output filename [.min]
+-v, --verbose          write verbose output
+```
 
 Optimize a single file
 
@@ -58,6 +54,6 @@ Optimize all files
 
 	./minify.js test/*
 
-Optimize an entire project, skipping php and appending content hashes
+Optimize all javascript files, appending content hashes
 
-	./minify.js src/**/** --content-hash --nophp --output dist 
+	./minify.js src/**/*.js --content-hash --output dist 

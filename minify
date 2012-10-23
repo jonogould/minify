@@ -19,14 +19,7 @@ app
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
 	.option('-a, --append [string]', 'append a custom string to the output filename [.min]', '.min')
-	.option('-v, --verbose', 'write verbose output', false)
-	.option('--nophp', 'skip php files')
-	.option('--nohtml', 'skip html files')
-	.option('--nocss', 'skip css files')
-	.option('--nojs', 'skip javascript files')
-	.option('--nopng', 'skip png files')
-	.option('--nojpeg', 'skip jpeg/jpg files')
-	.option('--noimages', 'skip images');
+	.option('-v, --verbose', 'write verbose output', false);
 
 // set version flag to lowercase
 app.options[0].flags = '-v, --version';
@@ -59,16 +52,6 @@ if (app.nomin && ! app.output) {
 
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
 
-var skip = [];
-
-if (app.nophp)    skip.push('php');
-if (app.nohtml)   skip.push('html');
-if (app.nocss)    skip.push('css');
-if (app.nojs)     skip.push('js');
-if (app.nopng)    skip.push('png');
-if (app.nojpeg)   skip.push('jpeg', 'jpg');
-if (app.noimages) skip.push('png', 'jpg', 'jpeg');
-
 _.each(app.args, function (file) {
 
 	// first, make sure file exists
@@ -86,9 +69,6 @@ _.each(app.args, function (file) {
 	}
 
 	var extension = _.last(file.split('.'));
-
-	// check if we're manually skipping this filetype
-	if (_.contains(skip, extension)) return;
 
 	// skip files that contain '.min'
 	if (file.search('.min') > 0) {
