@@ -19,6 +19,7 @@ app
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
 	.option('-a, --append [string]', 'append a custom string to the output filename [.min]', '.min')
+	.option('-v, --verbose', 'write verbose output', false)
 	.option('--nophp', 'skip php files')
 	.option('--nohtml', 'skip html files')
 	.option('--nocss', 'skip css files')
@@ -107,7 +108,10 @@ _.each(app.args, function (file) {
 		var message = 'Compressing';
 	}
 
-	console.log(clc.underline(message + ' "' + file + '"'));
+	if (app.verbose)
+	{
+		console.log(clc.underline(message + ' "' + file + '"'));
+	}
 
 	// hot sauce
 	minifier(file, output, app);
@@ -121,7 +125,14 @@ _.each(app.args, function (file) {
 
 	var diff = fs.statSync(file).size - fs.statSync(output).size;
 
-	console.log(clc.green('SAVED ') + output);
-	console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
-	console.log('');
+	if (app.verbose)
+	{
+		console.log(clc.green('SAVED ') + output);
+		console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
+		console.log('');
+	}
+	else
+	{
+		console.log(file + ':' + output);
+	}
 });
