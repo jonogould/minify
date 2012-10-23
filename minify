@@ -70,6 +70,9 @@ if (app.noimages) skip.push('png', 'jpg', 'jpeg');
 
 _.each(app.args, function (file) {
 
+	// first, make sure file exists
+	// and that it's actually a file
+
 	try {
 		var stat = fs.statSync(file);
 		if (! stat.isFile()) {
