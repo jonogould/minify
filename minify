@@ -35,12 +35,6 @@ _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
 	process.exit(1);
 });
 
-// --nomin requires an output to be set
-if (app.nomin && ! app.output) {
-	console.log(clc.red('ERROR ') + 'To use the --nomin flag you must set an output path.');
-	process.exit(1);
-}
-
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
 
 _.each(app.args, function (file) {
@@ -61,6 +55,9 @@ _.each(app.args, function (file) {
 
 	var extension = _.last(file.split('.'));
 
+	// make sure filetype is supported
+	if (! _.contains(supported, extension)) return;
+
 	// skip files that contain '.min'
 	if (file.search('.min') > 0) {
 		console.log(clc.underline('Skipping ' + '"' + file + '"'));
@@ -68,15 +65,11 @@ _.each(app.args, function (file) {
 		return;
 	}
 
-	// make sure filetype is supported
-	if (! _.contains(supported, extension)) return;
-
 	// create the output filename
 	var output = util.output(file, app);
 
 	// grab the appropriate minifier
 	var minifier = require('minify-minifiers')[extension];
-
 
 	if (app.verbose)
 	{
