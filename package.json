@@ -2,7 +2,7 @@
   "name": "minify",
   "version": "0.3.1",
   "description": "simple command-line wrapper for minifying javascript and css",
-  "main": "minify.js",
+  "main": "minify",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
