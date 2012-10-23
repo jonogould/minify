@@ -60,8 +60,7 @@ _.each(app.args, function (file) {
 
 	// skip files that contain '.min'
 	if (file.search('.min') > 0) {
-		console.log(clc.underline('Skipping ' + '"' + file + '"'));
-		console.log('');
+		console.log(clc.underline('Skipping ' + '"' + file + '"\n'));
 		return;
 	}
 
@@ -92,8 +91,7 @@ _.each(app.args, function (file) {
 	{
 		var diff = fs.statSync(file).size - fs.statSync(output).size;
 		console.log(clc.green('SAVED ') + output);
-		console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B');
-		console.log('');
+		console.log(clc.blue('INFO ') + 'file size reduced by ' + diff + 'B\n');
 	}
 	else
 	{
