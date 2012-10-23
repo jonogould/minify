@@ -133,6 +133,6 @@ _.each(app.args, function (file) {
 	}
 	else
 	{
-		console.log(output);
+		console.log(file + ':' + output);
 	}
 });
