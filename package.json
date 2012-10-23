@@ -1,6 +1,6 @@
 {
   "name": "minify",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "simple command-line wrapper for minifying javascript and css",
   "main": "minify",
   "scripts": {

@@ -14,7 +14,7 @@ var shell = require('shelljs');
 var util = require('minify-util');
 
 app
-	.version('0.3.1')
+	.version('0.3.2')
 	.option('-o, --output [path]', 'specify an output path (optional)')
 	.option('-g, --git-hash', 'prepends the abbreviated git commit hash to the output filename')
 	.option('-c, --content-hash', 'prepends an abbreviated hash based on the minified output')
