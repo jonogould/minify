@@ -27,13 +27,15 @@ app
 app.__dirname = __dirname;
 
 // show help if there aren't any input files specified
-if (app.args.length === 0) {
+if (app.args.length === 0)
+{
 	app.help();
 	process.exit(1);
 }
 
 // check for command-line tools
-_.each(['git', 'jpegtran', 'optipng'], function (prereq) {
+_.each(['git', 'jpegtran', 'optipng'], function (prereq)
+{
 	if ( shell.which(prereq) ) return;
 	console.log('oops, please install ' + prereq);
 	process.exit(1);
@@ -48,7 +50,8 @@ _.each(app.args, function (file) {
 
 	try {
 		var stat = fs.statSync(file);
-		if (! stat.isFile()) {
+		if (! stat.isFile())
+		{
 			console.log(clc.red('ERROR ') + '"' + file + '" is an invalid file');
 			return;
 		}
@@ -60,10 +63,14 @@ _.each(app.args, function (file) {
 	var extension = _.last(file.split('.'));
 
 	// make sure filetype is supported
-	if (! _.contains(supported, extension)) return;
+	if (! _.contains(supported, extension))
+	{
+		return;
+	}
 
 	// skip files that contain '.min'
-	if (file.search('.min') > 0) {
+	if (file.search('.min') > 0)
+	{
 		console.log(clc.underline('Skipping ' + '"' + file + '"\n'));
 		return;
 	}
@@ -71,12 +78,12 @@ _.each(app.args, function (file) {
 	if (app.verbose)
 	{
 		switch (extension) {
-			case 'jpg':
-			case 'jpeg':
-			case 'png':
-				var message = 'Compressing';
-			default:
-				var message = 'Minifying';
+		case 'jpg':
+		case 'jpeg':
+		case 'png':
+			var message = 'Compressing';
+		default:
+			var message = 'Minifying';
 		}
 
 		console.log(clc.underline(message + ' "' + file + '"'));
