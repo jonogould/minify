@@ -41,19 +41,20 @@ app.__dirname = __dirname;
 // check for input files
 if (app.args.length === 0) {
 	console.log(clc.red('ERROR ') + 'you didn\'t select any files');
+	process.exit(1);
 }
 
 // check for command-line tools
 _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
 	if ( shell.which(prereq) ) return;
 	console.log('oops, please install ' + prereq);
-	shell.exit(-1);
+	process.exit(1);
 });
 
 // --nomin requires an output to be set
 if (app.nomin && ! app.output) {
 	console.log(clc.red('ERROR ') + 'To use the --nomin flag you must set an output path.');
-	shell.exit(-1);
+	process.exit(1);
 }
 
 var supported = ['js', 'css', 'php', 'html', 'png', 'jpeg', 'jpg'];
