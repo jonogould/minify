@@ -64,12 +64,6 @@ _.each(app.args, function (file) {
 		return;
 	}
 
-	// create the output filename
-	var output = util.output(file, app);
-
-	// grab the appropriate minifier
-	var minifier = require('minify-minifiers')[extension];
-
 	if (app.verbose)
 	{
 		switch (extension) {
@@ -83,6 +77,12 @@ _.each(app.args, function (file) {
 
 		console.log(clc.underline(message + ' "' + file + '"'));
 	}
+
+	// create the output filename
+	var output = util.output(file, app);
+
+	// grab the appropriate minifier
+	var minifier = require('minify-minifiers')[extension];
 
 	// hot sauce
 	minifier(file, output, app);
