@@ -25,11 +25,8 @@ app
 // set dirname
 app.__dirname = __dirname;
 
-// check for input files
-if (app.args.length === 0) {
-	console.log(clc.red('ERROR ') + 'you didn\'t select any files');
-	process.exit(1);
-}
+// show help if there aren't any input files specified
+if (app.args.length === 0) app.help();
 
 // check for command-line tools
 _.each(['git', 'jpegtran', 'optipng'], function (prereq) {
