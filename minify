@@ -73,10 +73,13 @@ _.each(app.args, function (file) {
 
 	if (app.verbose)
 	{
-		var message = 'Minifying';
-
-		if (extension === 'jpeg' || extension === 'jpg' || extension === 'png') {
-			var message = 'Compressing';
+		switch (extension) {
+			case 'jpg':
+			case 'jpeg':
+			case 'png':
+				var message = 'Compressing';
+			default:
+				var message = 'Minifying';
 		}
 
 		console.log(clc.underline(message + ' "' + file + '"'));
