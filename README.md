@@ -19,7 +19,7 @@ Defaults for image compression were inspired by [Yahoo](http://developer.yahoo.c
 ```
 git clone git@github.com:wayneashleyberry/minify.git
 cd minify
-chmod +x minify.js
+chmod +x minify
 npm install .
 ```
 
@@ -32,7 +32,7 @@ brew link jpeg-turbo
 
 ### Usage
 
-Usage: ``` minify.js [file] [options] ```
+Usage: ``` minify [file] [options] ```
 
 ```
 Options:
@@ -48,12 +48,12 @@ Options:
 
 Optimize a single file
 
-	./minify.js test/test.css
+	./minify test/test.css
 
 Optimize all files
 
-	./minify.js test/*
+	./minify test/*
 
 Optimize all javascript files, appending content hashes
 
-	./minify.js src/**/*.js --content-hash --output dist 
+	./minify src/**/*.js --content-hash --output dist 
